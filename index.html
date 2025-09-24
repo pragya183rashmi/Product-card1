@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Colorful Product Cards</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f6d365, #fda085);
+      margin: 0;
+      padding: 20px;
+    }
+
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .product-card {
+      border-radius: 16px;
+      padding: 20px;
+      width: 180px;
+      text-align: center;
+      color: #fff;
+      font-weight: bold;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .product-name {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .product-price {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .stock-status {
+      padding: 6px 10px;
+      border-radius: 12px;
+      font-size: 14px;
+      display: inline-block;
+    }
+
+    .in-stock {
+      background-color: #10b981;
+    }
+
+    .out-stock {
+      background-color: #ef4444;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="product-container" id="productContainer"></div>
+
+  <script>
+    // Array of products
+    const products = [
+      { name: "Wireless Mouse", price: 799, inStock: true, color: "#6366f1" },
+      { name: "Keyboard", price: 1299, inStock: true, color: "#f43f5e" },
+      { name: "Headphones", price: 2199, inStock: false, color: "#10b981" },
+      { name: "Laptop", price: 55000, inStock: true, color: "#f59e0b" },
+      { name: "Smartphone", price: 29999, inStock: false, color: "#3b82f6" },
+      { name: "Webcam", price: 1599, inStock: true, color: "#8b5cf6" }
+    ];
+
+    const container = document.getElementById("productContainer");
+
+    products.forEach(product => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.style.backgroundColor = product.color;
+
+      const name = document.createElement("div");
+      name.className = "product-name";
+      name.textContent = product.name;
+
+      const price = document.createElement("div");
+      price.className = "product-price";
+      price.textContent = "Price: ₹" + product.price;
+
+      const stock = document.createElement("div");
+      stock.className = "stock-status " + (product.inStock ? "in-stock" : "out-stock");
+      stock.textContent = product.inStock ? "In Stock" : "Out of Stock";
+
+      card.appendChild(name);
+      card.appendChild(price);
+      card.appendChild(stock);
+
+      container.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
